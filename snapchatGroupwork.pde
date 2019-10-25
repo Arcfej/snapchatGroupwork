@@ -27,6 +27,8 @@ Creative Interactions - Assignment 2
 PImage bg;
 PImage star;
 
+color drawingColor = #000000;
+
 //int[] filters = new int[] {THRESHOLD, GRAY, INVERT, ERODE, DILATE};
 //int currentFilter = 0;
 
@@ -49,6 +51,7 @@ void draw() {
 // ----------------------------------------------------------------------------
 
 void mousePressed() {
+  // DRAWING STARS AT CLICKED POSITION
   if (mouseButton == RIGHT) {
     drawStars(pmouseX, pmouseY);
   }
@@ -58,25 +61,25 @@ void keyPressed() {
     // Colour Selection
        //BLUE
      if (key == 'b' || key == 'B') {
-       stroke(0,0,255);
+       drawingColor = color(0,0,255);
      } // RED
      else if (key == 'r' || key == 'R') {
-       stroke(255,0,0);
+       drawingColor = color(255,0,0);
      } // GREEN
      else if (key == 'g' || key == 'G') {
-       stroke(0,255,0);
+       drawingColor = color(0,255,0);
      } // YELLOW
      else if (key == 'y' || key == 'Y') {
-       stroke(255,255,0);
+       drawingColor = color(255,255,0);
      } //ORANGE
      else if (key == 'o' || key == 'O') {
-       stroke(255,128,0);
+       drawingColor = color(255,128,0);
      } //PINK
      else if (key == 'p' || key == 'P') {
-       stroke(255,0,255);
+       drawingColor = color(255,0,255);
      } //WHITE
      else if (key == 'w' || key == 'W') {
-       stroke(255);
+       drawingColor = color(255);
      }
      
     // FILTERS
@@ -99,6 +102,7 @@ void keyReleased() {
 void mouseDragged() {
   if (mouseButton == LEFT) {
     strokeWeight(5);
+    stroke(drawingColor);
     line(pmouseX,pmouseY,mouseX,mouseY);
   }
 }
