@@ -36,7 +36,6 @@ void setup() {
   // in the size() method. In this program, the size of the image
   // is 640 x 360 pixels.
   star = loadImage("star.png");
-  background(bg);
   bg = loadImage("background.jpeg");
   background(bg);
 }
