@@ -26,15 +26,15 @@ Creative Interactions - Assignment 2
 
 PImage bg;
 
-int[] filters = new int[] {THRESHOLD, GRAY, INVERT, ERODE, DILATE};
-int currentFilter = 0;
+//int[] filters = new int[] {THRESHOLD, GRAY, INVERT, ERODE, DILATE};
+//int currentFilter = 0;
 
 void setup() {
-  size(960, 720);
+  size(1920, 1080);
   // The background image must be the same size as the parameters
   // in the size() method. In this program, the size of the image
   // is 640 x 360 pixels.
-  bg = loadImage("sample.jpg");
+  bg = loadImage("background.jpeg");
   background(bg);
   //filter(INVERT);
 }
@@ -71,11 +71,21 @@ void keyPressed() {
      else if (key == 'w' || key == 'W') {
        stroke(255);
      }
-    // FILTER SELECTION
+     // FILTERS
      else if (key == 'f' || key == 'F') {
-       filter(filters[currentFilter++]);
-       if (currentFilter > filters.length) currentFilter = 0;
+       save("/data/backup.jpeg");
+       filter(INVERT);
+       //filter(filters[currentFilter++]);
+       //if (currentFilter >= filters.length) currentFilter = 0;
      }
+     // REVERSE FILTER
+     else if (key == 'u' || key == 'U') {
+       background( loadImage("backup.jpeg"));
+     }
+}
+
+void keyReleased() {
+  
 }
 
 void mouseDragged() {
