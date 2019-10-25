@@ -25,6 +25,7 @@ Creative Interactions - Assignment 2
 */
 
 PImage bg;
+PImage star;
 
 //int[] filters = new int[] {THRESHOLD, GRAY, INVERT, ERODE, DILATE};
 //int currentFilter = 0;
@@ -34,9 +35,10 @@ void setup() {
   // The background image must be the same size as the parameters
   // in the size() method. In this program, the size of the image
   // is 640 x 360 pixels.
+  star = loadImage("star.png");
+  background(bg);
   bg = loadImage("background.jpeg");
   background(bg);
-  //filter(INVERT);
 }
 
 void draw() {
@@ -46,6 +48,12 @@ void draw() {
 // ----------------------------------------------------------------------------
 // EVENT HANDLERS
 // ----------------------------------------------------------------------------
+
+void mousePressed() {
+  if (mouseButton == RIGHT) {
+    drawStars(pmouseX, pmouseY);
+  }
+}
 
 void keyPressed() {
     // Colour Selection
@@ -71,14 +79,15 @@ void keyPressed() {
      else if (key == 'w' || key == 'W') {
        stroke(255);
      }
-     // FILTERS
+     
+    // FILTERS
      else if (key == 'f' || key == 'F') {
        save("/data/backup.jpeg");
        filter(INVERT);
        //filter(filters[currentFilter++]);
        //if (currentFilter >= filters.length) currentFilter = 0;
      }
-     // REVERSE FILTER
+    // REVERSE FILTER
      else if (key == 'u' || key == 'U') {
        background( loadImage("backup.jpeg"));
      }
@@ -93,4 +102,12 @@ void mouseDragged() {
     strokeWeight(5);
     line(pmouseX,pmouseY,mouseX,mouseY);
   }
+}
+
+// ----------------------------------------------------------------------------
+// CUSTOM METHODS
+// ----------------------------------------------------------------------------
+
+void drawStars(float x, float y) {
+  image(star, x - 12.5, y - 12.5, 25, 25);
 }
