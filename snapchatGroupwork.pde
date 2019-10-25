@@ -108,5 +108,18 @@ void mouseDragged() {
 // ----------------------------------------------------------------------------
 
 void drawStars(float x, float y) {
-  image(star, x - 12.5, y - 12.5, 25, 25);
+  noFill();
+  stroke(255,255,0);
+  strokeWeight(1);
+  
+  ellipse(x, y, 200, 50);
+  
+  image(star, x - 112.5, y - 12.5, 25, 25);
+  image(star, x - 72.5, y - 32.5, 25, 25);
+  image(star, x - 12.5, y - 37.5, 25, 25);
+  image(star, x + 45, y - 32.5, 25, 25);
+  image(star, x + 87.5, y - 12.5, 25, 25);
+  image(star, x + 45, y + 7.5, 25, 25);
+  image(star, x - 12.5, y + 12.5, 25, 25);
+  image(star, x - 72.5, y + 7.5, 25, 25);
 }
