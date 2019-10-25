@@ -22,6 +22,7 @@ Creative Interactions - Assignment 2
 */
 
 PImage bg;
+PImage star;
 
 void setup() {
   size(960, 720);
@@ -29,9 +30,20 @@ void setup() {
   // in the size() method. In this program, the size of the image
   // is 640 x 360 pixels.
   bg = loadImage("sample.jpg");
+  star = loadImage("star.png");
+  background(bg);
 }
 
 void draw() {
-  background(bg);
   
+}
+
+void mousePressed() {
+  if (mouseButton == RIGHT) {
+    drawStars(pmouseX, pmouseY);
+  }
+}
+
+void drawStars(float x, float y) {
+  image(star, x - 12.5, y - 12.5, 25, 25);
 }
