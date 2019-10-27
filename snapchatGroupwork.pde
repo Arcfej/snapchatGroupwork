@@ -27,9 +27,6 @@ Creative Interactions - Assignment 2
 PImage bg;
 PImage star;
 
-//int[] filters = new int[] {THRESHOLD, GRAY, INVERT, ERODE, DILATE};
-//int currentFilter = 0;
-
 void setup() {
   size(1920, 1080);
   // The background image must be the same size as the parameters
@@ -53,6 +50,10 @@ void mousePressed() {
     drawStars(pmouseX, pmouseY);
   }
 }
+
+int[] filters = new int[] {THRESHOLD, GRAY, INVERT, ERODE, DILATE};
+int currentFilter = 0;
+boolean hasBackup = false;
 
 void keyPressed() {
     // Colour Selection
@@ -79,16 +80,20 @@ void keyPressed() {
        stroke(255);
      }
      
-    // FILTERS
+    // GO THROUGH ALL THE FILTERS
      else if (key == 'f' || key == 'F') {
-       save("/data/backup.jpeg");
-       filter(INVERT);
-       //filter(filters[currentFilter++]);
-       //if (currentFilter >= filters.length) currentFilter = 0;
+       if (hasBackup) reverseFilter();
+       backupImage();
+       filter(filters[currentFilter++]);
+       if (currentFilter >= filters.length) currentFilter = 0;
      }
     // REVERSE FILTER
      else if (key == 'u' || key == 'U') {
-       background( loadImage("backup.jpeg"));
+       if (hasBackup) reverseFilter();
+     }
+    // SAVE FILTER
+     else if (key == 's' || key == 'S') {
+       hasBackup = false;
      }
 }
 
@@ -109,4 +114,16 @@ void mouseDragged() {
 
 void drawStars(float x, float y) {
   image(star, x - 12.5, y - 12.5, 25, 25);
+}
+
+private static final String BACKUP_FILE_NAME = "backup.jpeg";
+
+void backupImage() {
+  save("/data/" + BACKUP_FILE_NAME);
+  hasBackup = true;
+}
+
+void reverseFilter() {
+  background( loadImage(BACKUP_FILE_NAME));
+  hasBackup = false;
 }
