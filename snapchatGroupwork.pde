@@ -2,6 +2,9 @@
 Creative Interactions - Assignment 2
 */
 
+//import java.util.List<E>;
+//import java.util.ArrayList<E>;
+
 /*
   IDEAS
   -----------------------------------------------------------------
@@ -22,16 +25,105 @@ Creative Interactions - Assignment 2
 */
 
 PImage bg;
+PImage star;
+
+color drawingColor = #000000;
+
+//int[] filters = new int[] {THRESHOLD, GRAY, INVERT, ERODE, DILATE};
+//int currentFilter = 0;
 
 void setup() {
-  size(960, 720);
+  size(1920, 1080);
   // The background image must be the same size as the parameters
   // in the size() method. In this program, the size of the image
   // is 640 x 360 pixels.
-  bg = loadImage("sample.jpg");
+  star = loadImage("star.png");
+  bg = loadImage("background.jpeg");
+  background(bg);
 }
 
 void draw() {
-  background(bg);
   
+}
+
+// ----------------------------------------------------------------------------
+// EVENT HANDLERS
+// ----------------------------------------------------------------------------
+
+void mousePressed() {
+  // DRAWING STARS AT CLICKED POSITION
+  if (mouseButton == RIGHT) {
+    drawStars(pmouseX, pmouseY);
+  }
+}
+
+void keyPressed() {
+    // Colour Selection
+       //BLUE
+     if (key == 'b' || key == 'B') {
+       drawingColor = color(0,0,255);
+     } // RED
+     else if (key == 'r' || key == 'R') {
+       drawingColor = color(255,0,0);
+     } // GREEN
+     else if (key == 'g' || key == 'G') {
+       drawingColor = color(0,255,0);
+     } // YELLOW
+     else if (key == 'y' || key == 'Y') {
+       drawingColor = color(255,255,0);
+     } //ORANGE
+     else if (key == 'o' || key == 'O') {
+       drawingColor = color(255,128,0);
+     } //PINK
+     else if (key == 'p' || key == 'P') {
+       drawingColor = color(255,0,255);
+     } //WHITE
+     else if (key == 'w' || key == 'W') {
+       drawingColor = color(255);
+     }
+     
+    // FILTERS
+     else if (key == 'f' || key == 'F') {
+       save("/data/backup.jpeg");
+       filter(INVERT);
+       //filter(filters[currentFilter++]);
+       //if (currentFilter >= filters.length) currentFilter = 0;
+     }
+    // REVERSE FILTER
+     else if (key == 'u' || key == 'U') {
+       background( loadImage("backup.jpeg"));
+     }
+}
+
+void keyReleased() {
+  
+}
+
+void mouseDragged() {
+  if (mouseButton == LEFT) {
+    strokeWeight(5);
+    stroke(drawingColor);
+    line(pmouseX,pmouseY,mouseX,mouseY);
+  }
+}
+
+// ----------------------------------------------------------------------------
+// CUSTOM METHODS
+// ----------------------------------------------------------------------------
+
+void drawStars(float x, float y) {
+  noFill();
+  stroke(255,255,0);
+  strokeWeight(1);
+  
+  ellipse(x, y, 200, 50);
+  
+  image(star, x - 112.5, y - 12.5, 25, 25);
+  image(star, x - 72.5, y - 32.5, 25, 25);
+  image(star, x - 12.5, y - 37.5, 25, 25);
+  image(star, x + 45, y - 32.5, 25, 25);
+  image(star, x + 87.5, y - 12.5, 25, 25);
+  image(star, x + 45, y + 7.5, 25, 25);
+  image(star, x - 12.5, y + 12.5, 25, 25);
+  image(star, x - 72.5, y + 7.5, 25, 25);
 }
