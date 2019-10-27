@@ -28,6 +28,7 @@ PImage bg;
 PImage star;
 
 color drawingColor = #000000;
+int drawingWeight = 5;
 
 void setup() {
   size(1920, 1080);
@@ -106,10 +107,15 @@ void keyReleased() {
 
 void mouseDragged() {
   if (mouseButton == LEFT) {
-    strokeWeight(5);
+    strokeWeight(drawingWeight);
     stroke(drawingColor);
     line(pmouseX,pmouseY,mouseX,mouseY);
   }
+}
+
+void mouseWheel(MouseEvent event) {
+  float e = event.getCount();
+  println(e);
 }
 
 // ----------------------------------------------------------------------------
