@@ -2,9 +2,6 @@
 Creative Interactions - Assignment 2
 */
 
-//import java.util.List<E>;
-//import java.util.ArrayList<E>;
-
 /*
   IDEAS
   -----------------------------------------------------------------
@@ -99,10 +96,6 @@ void keyPressed() {
      else if (key == 's' || key == 'S') {
        hasBackup = false;
      }
-}
-
-void keyReleased() {
-  
 }
 
 void mouseDragged() {
