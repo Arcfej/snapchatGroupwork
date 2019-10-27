@@ -27,8 +27,8 @@ Creative Interactions - Assignment 2
 PImage bg;
 PImage star;
 
-color drawingColor = #000000;
-int drawingWeight = 5;
+color drawingColor = #000000; // The colour of the drawing function
+float drawingWeight = 5; // The thickness of the drawing function
 
 void setup() {
   size(1920, 1080);
@@ -60,7 +60,7 @@ int currentFilter = 0;
 boolean hasBackup = false;
 
 void keyPressed() {
-    // Colour Selection
+    // COLOR SELECTION
        //BLUE
      if (key == 'b' || key == 'B') {
        drawingColor = color(0,0,255);
@@ -107,21 +107,28 @@ void keyReleased() {
 
 void mouseDragged() {
   if (mouseButton == LEFT) {
+    // DRAW WITH THE MOUSE WHEN LEFT BUTTON IS PRESSED
     strokeWeight(drawingWeight);
     stroke(drawingColor);
     line(pmouseX,pmouseY,mouseX,mouseY);
   }
 }
 
-void mouseWheel(MouseEvent event) {
-  float e = event.getCount();
-  println(e);
+void mouseWheel(MouseEvent e) {
+  float count = e.getCount();
+  // IF THE USER ROTATE THE WHEEL UP, INCREASE drawingWeight
+  if (count < 0 && drawingWeight < 50) drawingWeight -= count;
+  // IF THE USER ROTATE THE WHEEL DOWN, DECREASE drawingWeight
+  else if (count > 0 && drawingWeight > 1) drawingWeight -= count;
 }
 
 // ----------------------------------------------------------------------------
 // CUSTOM METHODS
 // ----------------------------------------------------------------------------
 
+/**
+ * DRAW STARS AROUND THE GIVEN POSITION IN AN ELLIPSIS SHAPE
+**/
 void drawStars(float x, float y) {
   noFill();
   stroke(255,255,0);
