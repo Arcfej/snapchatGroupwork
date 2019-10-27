@@ -86,14 +86,14 @@ void keyPressed() {
      
     // GO THROUGH ALL THE FILTERS
      else if (key == 'f' || key == 'F') {
-       if (hasBackup) reverseFilter();
+       if (hasBackup) restoreImage();
        backupImage();
        filter(filters[currentFilter++]);
        if (currentFilter >= filters.length) currentFilter = 0;
      }
     // REVERSE FILTER
      else if (key == 'u' || key == 'U') {
-       if (hasBackup) reverseFilter();
+       if (hasBackup) restoreImage();
      }
     // SAVE FILTER
      else if (key == 's' || key == 'S') {
@@ -153,7 +153,7 @@ void backupImage() {
   hasBackup = true;
 }
 
-void reverseFilter() {
+void restoreImage() {
   background( loadImage(BACKUP_FILE_NAME));
   hasBackup = false;
 }
