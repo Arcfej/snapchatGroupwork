@@ -27,6 +27,8 @@ Creative Interactions - Assignment 2
 PImage bg;
 PImage star;
 
+color drawingColor = #000000;
+
 void setup() {
   size(1920, 1080);
   // The background image must be the same size as the parameters
@@ -46,6 +48,7 @@ void draw() {
 // ----------------------------------------------------------------------------
 
 void mousePressed() {
+  // DRAWING STARS AT CLICKED POSITION
   if (mouseButton == RIGHT) {
     drawStars(pmouseX, pmouseY);
   }
@@ -59,25 +62,25 @@ void keyPressed() {
     // Colour Selection
        //BLUE
      if (key == 'b' || key == 'B') {
-       stroke(0,0,255);
+       drawingColor = color(0,0,255);
      } // RED
      else if (key == 'r' || key == 'R') {
-       stroke(255,0,0);
+       drawingColor = color(255,0,0);
      } // GREEN
      else if (key == 'g' || key == 'G') {
-       stroke(0,255,0);
+       drawingColor = color(0,255,0);
      } // YELLOW
      else if (key == 'y' || key == 'Y') {
-       stroke(255,255,0);
+       drawingColor = color(255,255,0);
      } //ORANGE
      else if (key == 'o' || key == 'O') {
-       stroke(255,128,0);
+       drawingColor = color(255,128,0);
      } //PINK
      else if (key == 'p' || key == 'P') {
-       stroke(255,0,255);
+       drawingColor = color(255,0,255);
      } //WHITE
      else if (key == 'w' || key == 'W') {
-       stroke(255);
+       drawingColor = color(255);
      }
      
     // GO THROUGH ALL THE FILTERS
@@ -104,6 +107,7 @@ void keyReleased() {
 void mouseDragged() {
   if (mouseButton == LEFT) {
     strokeWeight(5);
+    stroke(drawingColor);
     line(pmouseX,pmouseY,mouseX,mouseY);
   }
 }
@@ -113,7 +117,20 @@ void mouseDragged() {
 // ----------------------------------------------------------------------------
 
 void drawStars(float x, float y) {
-  image(star, x - 12.5, y - 12.5, 25, 25);
+  noFill();
+  stroke(255,255,0);
+  strokeWeight(1);
+  
+  ellipse(x, y, 200, 50);
+  
+  image(star, x - 112.5, y - 12.5, 25, 25);
+  image(star, x - 72.5, y - 32.5, 25, 25);
+  image(star, x - 12.5, y - 37.5, 25, 25);
+  image(star, x + 45, y - 32.5, 25, 25);
+  image(star, x + 87.5, y - 12.5, 25, 25);
+  image(star, x + 45, y + 7.5, 25, 25);
+  image(star, x - 12.5, y + 12.5, 25, 25);
+  image(star, x - 72.5, y + 7.5, 25, 25);
 }
 
 private static final String BACKUP_FILE_NAME = "backup.jpeg";
