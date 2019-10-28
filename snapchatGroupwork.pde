@@ -95,7 +95,7 @@ void keyPressed() {
        if (currentFilter >= filters.length) currentFilter = 0;
      }
     // REVERSE FILTER
-     else if (key == 'u' || key == 'U') {
+     else if (key == 'd' || key == 'D') {
        if (hasBackup) restoreImage();
      }
     // SAVE FILTER
