@@ -43,7 +43,7 @@ void draw() {
 // ----------------------------------------------------------------------------
 
 void mousePressed() {
-  // DRAWING STARS AT CLICKED POSITION
+  // DRAWING STARS AROUND THE CLICKED POSITION
   if (mouseButton == RIGHT) {
     drawStars(pmouseX, pmouseY);
   }
@@ -126,7 +126,7 @@ void mouseWheel(MouseEvent e) {
 // ----------------------------------------------------------------------------
 
 /**
- * DRAW STARS AROUND THE GIVEN POSITION IN AN ELLIPSIS SHAPE
+ * DRAW STARS AROUND THE GIVEN POSITION ON AN ELLIPSIS SHAPE
 **/
 void drawStars(float x, float y) {
   noFill();
