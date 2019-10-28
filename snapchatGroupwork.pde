@@ -29,9 +29,6 @@ float drawingWeight = 5; // The thickness of the drawing function
 
 void setup() {
   size(1920, 1080);
-  // The background image must be the same size as the parameters
-  // in the size() method. In this program, the size of the image
-  // is 640 x 360 pixels.
   star = loadImage("star.png");
   bg = loadImage("background.jpeg");
   background(bg);
@@ -53,39 +50,48 @@ void mousePressed() {
 }
 
 int[] filters = new int[] {THRESHOLD, GRAY, INVERT, ERODE, DILATE};
-int currentFilter = 0;
-boolean hasBackup = false;
+int currentFilter = 0; // The index of the currently used filter
+boolean hasBackup = false; // Indicate the backup of the whole picture
 
 void keyPressed() {
     // COLOR SELECTION
-       //BLUE
+     //BLUE
      if (key == 'b' || key == 'B') {
        drawingColor = color(0,0,255);
-     } // RED
+     }
+     // RED
      else if (key == 'r' || key == 'R') {
        drawingColor = color(255,0,0);
-     } // GREEN
+     }
+     // GREEN
      else if (key == 'g' || key == 'G') {
        drawingColor = color(0,255,0);
-     } // YELLOW
+     }
+     // YELLOW
      else if (key == 'y' || key == 'Y') {
        drawingColor = color(255,255,0);
-     } //ORANGE
+     }
+     //ORANGE
      else if (key == 'o' || key == 'O') {
        drawingColor = color(255,128,0);
-     } //PINK
+     }
+     //PINK
      else if (key == 'p' || key == 'P') {
        drawingColor = color(255,0,255);
-     } //WHITE
+     }
+     //WHITE
      else if (key == 'w' || key == 'W') {
        drawingColor = color(255);
      }
      
     // GO THROUGH ALL THE FILTERS
      else if (key == 'f' || key == 'F') {
+       // Reverse the previous filter if there is any
        if (hasBackup) restoreImage();
        backupImage();
+       
        filter(filters[currentFilter++]);
+       // Make shure the 'F' key go through all the filters, so jump to the beginning if it reached the end of the list
        if (currentFilter >= filters.length) currentFilter = 0;
      }
     // REVERSE FILTER
